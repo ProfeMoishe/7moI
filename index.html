@@ -858,6 +858,1555 @@
     <div class="section-label">// tiempo restante</div>
     <h2 class="section-title">Cuenta Regresiva a la Colación</h2>
     <p style="margin-top:0.8rem;font-size:0.75rem;color:var(--muted);">
+      Tiempo restante hasta la colación de grados — 16 de diciembre de 2026
+    </p>
+  </div>
+  <div class="countdown-grid">
+    <div class="cd-item">
+      <div class="cd-num" id="cd-days">00</div>
+      <div class="cd-label">Días</div>
+    </div>
+    <div class="cd-separator">:</div>
+    <div class="cd-item">
+      <div class="cd-num" id="cd-hours">00</div>
+      <div class="cd-label">Horas</div>
+    </div>
+    <div class="cd-separator">:</div>
+    <div class="cd-item">
+      <div class="cd-num" id="cd-mins">00</div>
+      <div class="cd-label">Minutos</div>
+    </div>
+    <div class="cd-separator">:</div>
+    <div class="cd-item">
+      <div class="cd-num" id="cd-secs">00</div>
+      <div class="cd-label">Segundos</div>
+    </div>
+  </div>
+  <div style="margin-top:3rem;font-size:0.65rem;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;">
+    Target: <span style="color:var(--accent)">16 Diciembre 2026 — Colación de Grados</span>
+  </div>
+  <button class="btn-game" style="width:auto;margin-top:2rem;padding:0.9rem 2.5rem;" onclick="triggerCodeRain()">
+    <span>🎉 Celebrar — Activar Matrix Mode</span>
+  </button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <strong>IPET N° 247 "Carlos Cassaffousth"</strong><br>
+    Técnico en Programación — 7mo I<br>
+    Segunda Promoción · 2026<br>
+    <span style="color:var(--accent);margin-top:0.3rem;display:block;">25 egresados que van a cambiar el código del mundo.</span>
+  </div>
+  <div class="footer-right">
+    7MO I
+    <small>PROMO 2026 · IPET 247</small>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════ */
+const students = [
+  { name: "Marcos Aldair Alvarez Navarro", skills: ["Python","Git","Algoritmos"], quote: "El primer paso para resolver un problema es entenderlo." },
+  { name: "Ezequiel Oscar Anaya Quispe", skills: ["JavaScript","HTML","CSS"], quote: "El código que funciona hoy es la base del mañana." },
+  { name: "Kevin Fernando Arrieta", skills: ["Java","POO","Bases de Datos"], quote: "Debuggear es como ser detective en una novela donde vos sos el asesino." },
+  { name: "Roque Daniel Barrientos", skills: ["C++","Redes","Linux"], quote: "La paciencia es la habilidad más importante de un programador." },
+  { name: "Francisco Castillo", skills: ["SQL","Web","APIs"], quote: "Primero hacelo funcionar, luego hacelo rápido." },
+  { name: "Hector Valentin Chacon", skills: ["Python","IA","Data"], quote: "Los datos son el nuevo petróleo, y yo tengo la refinería." },
+  { name: "Joaquín Alejo Cuello", skills: ["React","Node","MongoDB"], quote: "El buen código se escribe para humanos, no para máquinas." },
+  { name: "Matias Benjamin Elia Amuchastegui", skills: ["Java","Android","Git"], quote: "Cada error es una oportunidad de aprender algo nuevo." },
+  { name: "Oscar Escobar Marin", skills: ["PHP","MySQL","Linux"], quote: "La simplicidad es el máximo grado de sofisticación." },
+  { name: "Lautaro Benjamin Ferre", skills: ["C#",".NET","Unity"], quote: "Si funciona, no lo toques. Si no funciona, Stack Overflow." },
+  { name: "Sol Agostina Gimenez", skills: ["UX/UI","HTML","CSS"], quote: "El diseño es la cara de la tecnología que el usuario ve y siente." },
+  { name: "Luca Mateo Heredia", skills: ["Python","Django","REST"], quote: "Un programador eficiente es un programador perezoso con talento." },
+  { name: "Ronan Martín Konrad Moyano", skills: ["Kotlin","Android","Firebase"], quote: "La creatividad es la inteligencia divirtiéndose." },
+  { name: "Thiago Sebastian Ledesma", skills: ["Vue.js","JS","Tailwind"], quote: "El código limpio siempre se ve como si fuera fácil de escribir." },
+  { name: "Tomás Agustin Loza Martelane", skills: ["Rust","C","Sistemas"], quote: "Primero piensa, después programa." },
+  { name: "Maximo Joaquin Martinez", skills: ["Go","Docker","DevOps"], quote: "La automatización es el arte de hacer que las máquinas trabajen por vos." },
+  { name: "Gonzalo Tobías Medrano Herrera", skills: ["TypeScript","Next.js","AWS"], quote: "El mejor código es el que no necesita comentarios para entenderse." },
+  { name: "Irina Edith Morales Ortiz", skills: ["Python","ML","Pandas"], quote: "La diversidad en tech no es solo ética, es una ventaja competitiva." },
+  { name: "Alvaro Thomas Oviedo", skills: ["PHP","Laravel","MySQL"], quote: "Todo bug tiene solución. La cuestión es cuánto café tomás hasta encontrarla." },
+  { name: "Bruno Jeremias Parejo", skills: ["Swift","iOS","Xcode"], quote: "El software es como el arte: siempre puede mejorarse." },
+  { name: "Bruno Matias Pedraza", skills: ["C++","Embebidos","Arduino"], quote: "La diferencia entre teoría y práctica es mayor en la práctica." },
+  { name: "Gabriel Eduardo Polo Guitian", skills: ["Java","Spring","Microservicios"], quote: "La arquitectura de software es el puente entre los problemas y las soluciones." },
+  { name: "Valentin De La Cruz Rodriguez", skills: ["React Native","JS","APIs"], quote: "Codigo hoy para no hacer soporte mañana." },
+  { name: "Cristian David Sullca Mamani", skills: ["Python","Seguridad","Redes"], quote: "La ciberseguridad empieza con cultura, no con herramientas." },
+  { name: "Maycol Nicolas Tisera Nievas", skills: ["JS","Electron","APIs"], quote: "Cada línea de código que escribís es una pequeña obra de arte." },
+];
+
+/* ═══════════════════════════════════════════
+   CURSOR
+═══════════════════════════════════════════ */
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+  cursorRing.style.transform = `translate(${mx - 19}px, ${my - 19}px)`;
+});
+
+/* ═══════════════════════════════════════════
+   BG CANVAS — particle grid
+═══════════════════════════════════════════ */
+const bgCanvas = document.getElementById('bg-canvas');
+const bgCtx = bgCanvas.getContext('2d');
+let bgW, bgH, bgDots = [];
+function resizeBG() {
+  bgW = bgCanvas.width = window.innerWidth;
+  bgH = bgCanvas.height = window.innerHeight;
+}
+resizeBG();
+window.addEventListener('resize', resizeBG);
+
+for (let i = 0; i < 120; i++) {
+  bgDots.push({
+    x: Math.random(), y: Math.random(),
+    vx: (Math.random() - 0.5) * 0.0003,
+    vy: (Math.random() - 0.5) * 0.0003,
+    r: Math.random() * 1.5 + 0.5
+  });
+}
+
+function drawBG() {
+  bgCtx.clearRect(0, 0, bgW, bgH);
+  bgDots.forEach(d => {
+    d.x += d.vx; d.y += d.vy;
+    if (d.x < 0) d.x = 1; if (d.x > 1) d.x = 0;
+    if (d.y < 0) d.y = 1; if (d.y > 1) d.y = 0;
+    const px = d.x * bgW, py = d.y * bgH;
+    bgCtx.beginPath();
+    bgCtx.arc(px, py, d.r, 0, Math.PI * 2);
+    bgCtx.fillStyle = '#00ffe0';
+    bgCtx.fill();
+  });
+  // connect nearby
+  for (let i = 0; i < bgDots.length; i++) {
+    for (let j = i + 1; j < bgDots.length; j++) {
+      const dx = (bgDots[i].x - bgDots[j].x) * bgW;
+      const dy = (bgDots[i].y - bgDots[j].y) * bgH;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 120) {
+        bgCtx.beginPath();
+        bgCtx.strokeStyle = `rgba(0,255,224,${0.12 * (1 - dist/120)})`;
+        bgCtx.lineWidth = 0.5;
+        bgCtx.moveTo(bgDots[i].x * bgW, bgDots[i].y * bgH);
+        bgCtx.lineTo(bgDots[j].x * bgW, bgDots[j].y * bgH);
+        bgCtx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawBG);
+}
+drawBG();
+
+/* ═══════════════════════════════════════════
+   HERO COUNTER TYPEWRITER
+═══════════════════════════════════════════ */
+const counterEl = document.getElementById('hero-counter');
+const msgs = [
+  '// 25 alumnos listos para producción',
+  '// Segunda promoción :: IPET 247',
+  '// Técnicos en Programación 2025',
+  '// El futuro del software argentino',
+];
+let msgIdx = 0, charIdx = 0, deleting = false;
+function typeWriter() {
+  const msg = msgs[msgIdx];
+  if (!deleting) {
+    counterEl.textContent = msg.slice(0, charIdx++);
+    if (charIdx > msg.length) { deleting = true; setTimeout(typeWriter, 2000); return; }
+  } else {
+    counterEl.textContent = msg.slice(0, charIdx--);
+    if (charIdx < 0) { deleting = false; msgIdx = (msgIdx + 1) % msgs.length; charIdx = 0; }
+  }
+  setTimeout(typeWriter, deleting ? 30 : 60);
+}
+typeWriter();
+
+/* ═══════════════════════════════════════════
+   STATS COUNTER ANIMATION
+═══════════════════════════════════════════ */
+function animateStat(el) {
+  const target = +el.dataset.target;
+  let cur = 0;
+  const step = target / 60;
+  const iv = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = Math.floor(cur).toString().padStart(el.textContent.length, '0');
+    if (cur >= target) clearInterval(iv);
+  }, 20);
+}
+const statObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateStat(e.target); statObserver.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num').forEach(el => statObserver.observe(el));
+
+/* ═══════════════════════════════════════════
+   STUDENTS GRID
+═══════════════════════════════════════════ */
+const grid = document.getElementById('students-grid');
+students.forEach((s, i) => {
+  const card = document.createElement('div');
+  card.className = 'student-card reveal';
+  card.style.transitionDelay = `${(i % 5) * 0.07}s`;
+  card.innerHTML = `
+    <div class="student-num">${String(i+1).padStart(2,'0')}</div>
+    <div class="student-name">${s.name}</div>
+    <div class="student-tag">Técnico en Programación</div>
+    <div class="student-bar"></div>
+  `;
+  card.addEventListener('click', () => openModal(i));
+  card.addEventListener('click', e => spawnParticles(e.clientX, e.clientY));
+  grid.appendChild(card);
+});
+
+/* ═══════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════ */
+function openModal(i) {
+  const s = students[i];
+  document.getElementById('modal-num').textContent = String(i+1).padStart(2,'0');
+  document.getElementById('modal-name').textContent = s.name;
+  document.getElementById('modal-role').textContent = 'Técnico en Programación · Promo 2026 · IPET 247';
+  const skillsEl = document.getElementById('modal-skills');
+  skillsEl.innerHTML = s.skills.map(sk => `<span class="skill-tag">${sk}</span>`).join('');
+  document.getElementById('modal-quote').textContent = `"${s.quote}"`;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+/* ═══════════════════════════════════════════
+   PARTICLES
+═══════════════════════════════════════════ */
+function spawnParticles(x, y) {
+  const colors = ['#00ffe0','#ff4b6e','#ffe44b'];
+  for (let i = 0; i < 8; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 8 + 4;
+    const angle = (i / 8) * Math.PI * 2;
+    const dist = 40 + Math.random() * 40;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${x}px;top:${y}px;
+      background:${colors[i%3]};
+      --tx:${Math.cos(angle)*dist}px;
+      --ty:${Math.sin(angle)*dist}px;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 800);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ═══════════════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════════════ */
+function updateCountdown() {
+  const target = new Date('2026-12-16T20:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '00';
+    document.getElementById('cd-hours').textContent = '00';
+    document.getElementById('cd-mins').textContent = '00';
+    document.getElementById('cd-secs').textContent = '00';
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(days).padStart(3,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ═══════════════════════════════════════════
+   CODE RAIN (Matrix)
+═══════════════════════════════════════════ */
+const rainCanvas = document.getElementById('code-rain');
+const rainCtx = rainCanvas.getContext('2d');
+let rainActive = false, rainInterval;
+
+function triggerCodeRain() {
+  rainCanvas.classList.toggle('active');
+  rainActive = !rainActive;
+  if (rainActive) {
+    rainCanvas.width = window.innerWidth;
+    rainCanvas.height = window.innerHeight;
+    const cols = Math.floor(rainCanvas.width / 16);
+    const drops = Array(cols).fill(0);
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(){}[]<>/\\|=+';
+    rainInterval = setInterval(() => {
+      rainCtx.fillStyle = 'rgba(8,10,15,0.07)';
+      rainCtx.fillRect(0, 0, rainCanvas.width, rainCanvas.height);
+      rainCtx.font = '14px Space Mono, monospace';
+      drops.forEach((y, x) => {
+        rainCtx.fillStyle = Math.random() > 0.95 ? '#fff' : '#00ffe0';
+        rainCtx.fillText(chars[Math.floor(Math.random() * chars.length)], x * 16, y * 16);
+        drops[x] = (y > rainCanvas.height / 16 && Math.random() > 0.975) ? 0 : y + 1;
+      });
+    }, 40);
+    showToast('🎉 ¡Matrix Mode ON! Hacé click de nuevo para salir.');
+  } else {
+    clearInterval(rainInterval);
+    rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+    showToast('Matrix Mode OFF');
+  }
+}
+
+/* ═══════════════════════════════════════════
+   GAME — BUG HUNTER
+═══════════════════════════════════════════ */
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const CW = 560, CH = 420;
+
+let gameState = 'idle'; // idle | playing | paused | over
+let score = 0, lives = 3, level = 1, frameCount = 0;
+let player, bullets, bugs, explosions, stars;
+let lastBugTime = 0, bugInterval = 1800;
+let highScores = JSON.parse(localStorage.getItem('ipet247hs') || '[]');
+
+const keys = {};
+document.addEventListener('keydown', e => {
+  keys[e.key] = true;
+  if (e.key === ' ') { e.preventDefault(); fireBullet(); }
+  if (e.key === 'p' || e.key === 'P') togglePause();
+});
+document.addEventListener('keyup', e => { keys[e.key] = false; });
+
+function initGame() {
+  score = 0; lives = 3; level = 1; frameCount = 0; lastBugTime = 0; bugInterval = 1800;
+  player = { x: CW/2, y: CH - 50, w: 36, h: 20, speed: 4.5 };
+  bullets = []; bugs = []; explosions = []; 
+  stars = Array.from({length:80}, () => ({ x: Math.random()*CW, y: Math.random()*CH, s: Math.random()*1.5+0.3, b: Math.random() }));
+  updateHUD();
+}
+
+function fireBullet() {
+  if (gameState !== 'playing') return;
+  bullets.push({ x: player.x, y: player.y - 12, w:4, h:14, vy:-8 });
+}
+
+const BUG_LABELS = ['null', 'NaN', '404', 'err', 'bug', '500', '¿?', 'undef', 'loop'];
+const BUG_COLORS = ['#ff4b6e','#ffaa00','#cc00ff','#ff6600'];
+function spawnBug() {
+  bugs.push({
+    x: 30 + Math.random() * (CW - 60),
+    y: -20,
+    w: 38, h: 22,
+    vx: (Math.random()-0.5) * (1 + level * 0.3),
+    vy: 0.8 + level * 0.15 + Math.random() * 0.5,
+    label: BUG_LABELS[Math.floor(Math.random()*BUG_LABELS.length)],
+    color: BUG_COLORS[Math.floor(Math.random()*BUG_COLORS.length)],
+    hp: 1 + (level > 5 ? 1 : 0)
+  });
+}
+
+function addExplosion(x, y, color) {
+  explosions.push({ x, y, r: 2, maxR: 28 + Math.random()*16, color, alpha: 1, particles: 
+    Array.from({length:10}, () => ({ a: Math.random()*Math.PI*2, d: 0, maxD: 20+Math.random()*20, c: Math.random() > 0.5 ? color : '#fff' }))
+  });
+}
+
+function updateGame(ts) {
+  if (gameState !== 'playing') return;
+  frameCount++;
+  const now = ts || 0;
+  
+  // Level up
+  level = 1 + Math.floor(score / 300);
+  bugInterval = Math.max(600, 1800 - level * 120);
+
+  // Stars
+  stars.forEach(s => { s.y = (s.y + s.s * 0.4) % CH; });
+
+  // Spawn bugs
+  if (now - lastBugTime > bugInterval) {
+    spawnBug(); lastBugTime = now;
+    if (level > 3 && Math.random() > 0.6) spawnBug();
+  }
+
+  // Player
+  if (keys['ArrowLeft'] || keys['a']) player.x = Math.max(player.w/2, player.x - player.speed);
+  if (keys['ArrowRight'] || keys['d']) player.x = Math.min(CW - player.w/2, player.x + player.speed);
+
+  // Bullets
+  bullets.forEach(b => b.y += b.vy);
+  bullets = bullets.filter(b => b.y > -20);
+
+  // Bugs
+  bugs.forEach(b => {
+    b.y += b.vy;
+    b.x += b.vx;
+    if (b.x < 20 || b.x > CW-20) b.vx *= -1;
+  });
+
+  // Collisions bullet-bug
+  bullets = bullets.filter(b => {
+    let hit = false;
+    bugs = bugs.filter(bug => {
+      if (Math.abs(b.x - bug.x) < bug.w/2 + b.w/2 && Math.abs(b.y - bug.y) < bug.h/2 + b.h/2) {
+        bug.hp--;
+        if (bug.hp <= 0) {
+          score += 10 * level;
+          addExplosion(bug.x, bug.y, bug.color);
+          spawnParticles(bug.x / CW * window.innerWidth, (bug.y / CH) * window.innerHeight);
+          updateHUD();
+          return false;
+        }
+        hit = true;
+      }
+      return true;
+    });
+    return !hit;
+  });
+
+  // Bugs reaching bottom
+  bugs = bugs.filter(b => {
+    if (b.y > CH + 10) {
+      lives--;
+      addExplosion(b.x, CH - 10, '#ff4b6e');
+      updateHUD();
+      if (lives <= 0) gameOver();
+      return false;
+    }
+    return true;
+  });
+
+  // Explosions
+  explosions.forEach(e => {
+    e.r += 1.5; e.alpha -= 0.06;
+    e.particles.forEach(p => p.d += 1.2);
+  });
+  explosions = explosions.filter(e => e.alpha > 0);
+}
+
+function drawGame(ts) {
+  ctx.clearRect(0, 0, CW, CH);
+
+  // BG
+  ctx.fillStyle = '#050810';
+  ctx.fillRect(0, 0, CW, CH);
+
+  // Stars
+  stars.forEach(s => {
+    const pulse = 0.5 + 0.5 * Math.sin(frameCount * 0.04 + s.b * 10);
+    ctx.fillStyle = `rgba(0,255,224,${0.3 * pulse})`;
+    ctx.beginPath(); ctx.arc(s.x, s.y, s.s, 0, Math.PI*2); ctx.fill();
+  });
+
+  if (gameState === 'idle') {
+    drawIdleScreen(); return;
+  }
+  if (gameState === 'over') {
+    drawGameOver(); return;
+  }
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(0,255,224,0.04)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < CW; x += 56) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,CH); ctx.stroke(); }
+  for (let y = 0; y < CH; y += 42) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(CW,y); ctx.stroke(); }
+
+  // Bugs
+  bugs.forEach(b => {
+    ctx.save();
+    ctx.translate(b.x, b.y);
+    // Bug body
+    ctx.fillStyle = b.color;
+    ctx.beginPath();
+    ctx.roundRect(-b.w/2, -b.h/2, b.w, b.h, 4);
+    ctx.fill();
+    // Label
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 9px Space Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(b.label, 0, 0);
+    // Legs
+    ctx.strokeStyle = b.color;
+    ctx.lineWidth = 1.5;
+    [-12, 12].forEach(side => {
+      [-5, 0, 5].forEach(yo => {
+        ctx.beginPath();
+        ctx.moveTo(side > 0 ? b.w/2 : -b.w/2, yo);
+        ctx.lineTo(side > 0 ? b.w/2+8 : -b.w/2-8, yo + (Math.sin(frameCount*0.15 + yo)*3));
+        ctx.stroke();
+      });
+    });
+    ctx.restore();
+  });
+
+  // Player ship
+  ctx.save();
+  ctx.translate(player.x, player.y);
+  // Glow
+  const grad = ctx.createRadialGradient(0, 0, 2, 0, 0, 30);
+  grad.addColorStop(0, 'rgba(0,255,224,0.3)');
+  grad.addColorStop(1, 'transparent');
+  ctx.fillStyle = grad;
+  ctx.fillRect(-30,-30,60,60);
+  // Ship body
+  ctx.fillStyle = '#00ffe0';
+  ctx.beginPath();
+  ctx.moveTo(0, -player.h);
+  ctx.lineTo(player.w/2, player.h/2);
+  ctx.lineTo(0, player.h/3);
+  ctx.lineTo(-player.w/2, player.h/2);
+  ctx.closePath();
+  ctx.fill();
+  // Cockpit
+  ctx.fillStyle = '#080a0f';
+  ctx.beginPath(); ctx.arc(0, -2, 5, 0, Math.PI*2); ctx.fill();
+  // Engine glow
+  ctx.fillStyle = `rgba(0,255,224,${0.4 + 0.4 * Math.sin(frameCount * 0.3)})`;
+  ctx.beginPath(); ctx.arc(0, player.h/2+3, 5, 0, Math.PI*2); ctx.fill();
+  ctx.restore();
+
+  // Bullets
+  bullets.forEach(b => {
+    ctx.fillStyle = '#ffe44b';
+    ctx.shadowColor = '#ffe44b';
+    ctx.shadowBlur = 8;
+    ctx.fillRect(b.x - b.w/2, b.y, b.w, b.h);
+    ctx.shadowBlur = 0;
+  });
+
+  // Explosions
+  explosions.forEach(e => {
+    ctx.globalAlpha = e.alpha;
+    ctx.strokeStyle = e.color;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, Math.PI*2); ctx.stroke();
+    e.particles.forEach(p => {
+      ctx.fillStyle = p.c;
+      ctx.beginPath();
+      ctx.arc(e.x + Math.cos(p.a)*p.d, e.y + Math.sin(p.a)*p.d, 2, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  });
+
+  if (gameState === 'paused') {
+    ctx.fillStyle = 'rgba(8,10,15,0.7)';
+    ctx.fillRect(0, 0, CW, CH);
+    ctx.fillStyle = '#00ffe0';
+    ctx.font = 'bold 40px Bebas Neue, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('PAUSADO', CW/2, CH/2 - 10);
+    ctx.font = '11px Space Mono, monospace';
+    ctx.fillStyle = '#5a7080';
+    ctx.fillText('Presiona P para continuar', CW/2, CH/2 + 20);
+  }
+}
+
+function drawIdleScreen() {
+  ctx.fillStyle = '#00ffe0';
+  ctx.font = 'bold 52px Bebas Neue, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('BUG HUNTER', CW/2, CH/2 - 40);
+  ctx.font = '11px Space Mono, monospace';
+  ctx.fillStyle = '#5a7080';
+  ctx.fillText('Eliminá los bugs antes de que lleguen abajo', CW/2, CH/2);
+  ctx.fillText('Presiona INICIAR JUEGO para comenzar', CW/2, CH/2 + 22);
+  // animated bugs preview
+  const t = Date.now() / 1000;
+  [['null','#ff4b6e',100],['NaN','#ffaa00',280],['404','#cc00ff',460]].forEach(([l,c,x]) => {
+    const y = 100 + Math.sin(t * 1.5 + x) * 20;
+    ctx.fillStyle = c;
+    ctx.beginPath(); ctx.roundRect(x-19, y-11, 38, 22, 4); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 9px Space Mono, monospace';
+    ctx.fillText(l, x, y);
+  });
+}
+
+function drawGameOver() {
+  ctx.fillStyle = 'rgba(8,10,15,0.85)';
+  ctx.fillRect(0, 0, CW, CH);
+  ctx.fillStyle = '#ff4b6e';
+  ctx.font = 'bold 56px Bebas Neue, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('GAME OVER', CW/2, CH/2 - 40);
+  ctx.font = 'bold 28px Bebas Neue, sans-serif';
+  ctx.fillStyle = '#00ffe0';
+  ctx.fillText(`SCORE: ${score}`, CW/2, CH/2);
+  ctx.font = '11px Space Mono, monospace';
+  ctx.fillStyle = '#5a7080';
+  ctx.fillText('Presiona INICIAR JUEGO para reintentar', CW/2, CH/2 + 40);
+}
+
+function updateHUD() {
+  document.getElementById('score-display').textContent = String(score).padStart(4,'0');
+  document.getElementById('level-display').textContent = String(level).padStart(2,'0');
+  document.getElementById('lives-display').textContent = '♥'.repeat(Math.max(0,lives)) + '♡'.repeat(Math.max(0,3-lives));
+}
+
+function togglePause() {
+  if (gameState === 'playing') gameState = 'paused';
+  else if (gameState === 'paused') gameState = 'playing';
+}
+
+function gameOver() {
+  gameState = 'over';
+  // Save high score
+  highScores.push(score);
+  highScores.sort((a,b) => b-a);
+  highScores = highScores.slice(0, 5);
+  localStorage.setItem('ipet247hs', JSON.stringify(highScores));
+  renderHighScores();
+  showToast(`Game Over! Score: ${score}`);
+}
+
+function renderHighScores() {
+  const el = document.getElementById('highscore-list');
+  el.innerHTML = highScores.length
+    ? highScores.map((s,i) => `<li><span>#${i+1}</span><span>${s}</span></li>`).join('')
+    : '<li><span>---</span><span>0</span></li>';
+}
+renderHighScores();
+
+function startGame() {
+  initGame();
+  gameState = 'playing';
+  document.getElementById('start-btn').querySelector('span').textContent = '⟳ Reiniciar';
+  showToast('¡A cazar bugs! 🐛');
+}
+
+let lastTs = 0;
+function gameLoop(ts) {
+  updateGame(ts - lastTs > 100 ? lastTs : ts);
+  lastTs = ts;
+  drawGame(ts);
+  requestAnimationFrame(gameLoop);
+}
+initGame();
+requestAnimationFrame(gameLoop);
+
+/* ═══════════════════════════════════════════
+   KONAMI CODE EASTER EGG
+═══════════════════════════════════════════ */
+const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let konamiIdx = 0;
+document.addEventListener('keydown', e => {
+  if (e.key === konami[konamiIdx]) {
+    konamiIdx++;
+    if (konamiIdx === konami.length) {
+      konamiIdx = 0;
+      showToast('🎮 ¡KONAMI CODE! — ¡Técnicos en modo DIOS!');
+      triggerCodeRain();
+      setTimeout(triggerCodeRain, 5000);
+    }
+  } else { konamiIdx = 0; }
+});
+
+/* Small hover sound effect via AudioContext */
+document.querySelectorAll('.student-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    try {
+      const ac = new (window.AudioContext || window.webkitAudioContext)();
+      const o = ac.createOscillator(); const g = ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      o.frequency.value = 440 + Math.random() * 220;
+      o.type = 'sine';
+      g.gain.setValueAtTime(0.05, ac.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.1);
+      o.start(); o.stop(ac.currentTime + 0.1);
+    } catch(e) {}
+  });
+});
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7mo I — IPET 247 | Técnicos en Programación · Promo 2026</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23080a0f'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='36' fill='%2300ffe0'%3E%3C/%3E%3Cpolygon points='32,8 56,52 8,52' fill='none' stroke='%2300ffe0' stroke-width='3'/%3E%3Ccircle cx='32' cy='36' r='5' fill='%2300ffe0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080a0f;
+    --deep: #0d1117;
+    --card: #111827;
+    --border: #1e2d40;
+    --accent: #00ffe0;
+    --accent2: #ff4b6e;
+    --accent3: #ffe44b;
+    --white: #f0f6ff;
+    --muted: #5a7080;
+    --glow: 0 0 30px rgba(0,255,224,0.25);
+    --glow2: 0 0 30px rgba(255,75,110,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  #cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: screen;
+    transition: transform 0.15s ease, background 0.2s;
+  }
+  #cursor-ring {
+    width: 38px; height: 38px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.5;
+    transition: transform 0.35s ease;
+  }
+
+  /* ── CANVAS BACKGROUND ── */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.18;
+  }
+
+  /* ── SCANLINES OVERLAY ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%;
+    z-index: 900;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(8,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-shadow: var(--glow);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 6rem 2rem 2rem;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .hero-badge {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.35rem 1rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 14vw, 12rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+  .hero-title .line1 { color: var(--white); display: block; }
+  .hero-title .line2 {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent2);
+    display: block;
+  }
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s ease 0.6s both;
+  }
+  .hero-sub span { color: var(--accent3); }
+  .hero-count {
+    margin-top: 3rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    animation: fadeUp 0.8s ease 0.8s both;
+  }
+  .hero-scroll {
+    margin-top: 4rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: fadeUp 0.8s ease 1s both;
+  }
+  .hero-scroll span { font-size: 0.65rem; letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase; }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* glitch effect on title */
+  .glitch {
+    position: relative;
+    display: inline-block;
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+  }
+  .glitch::before {
+    color: var(--accent2);
+    animation: glitch1 3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  .glitch::after {
+    color: var(--accent);
+    animation: glitch2 3s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+
+  /* ── SECTION SHARED ── */
+  section { position: relative; z-index: 1; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+  }
+
+  /* ── STATS BAR ── */
+  #stats {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--deep);
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--accent);
+    line-height: 1;
+    text-shadow: var(--glow);
+  }
+  .stat-label { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.25rem; }
+
+  /* ── STUDENTS GRID ── */
+  #students {
+    padding: 6rem 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .students-header { margin-bottom: 3rem; }
+  .students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .student-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.4rem 1.6rem;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .student-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,255,224,0.04), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .student-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--glow); }
+  .student-card:hover::before { opacity: 1; }
+  .student-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--border);
+    line-height: 1;
+    transition: color 0.3s;
+    position: absolute;
+    top: 0.8rem; right: 1rem;
+  }
+  .student-card:hover .student-num { color: var(--accent); opacity: 0.3; }
+  .student-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  .student-card:hover .student-name { color: var(--accent); }
+  .student-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .student-bar {
+    margin-top: 1rem;
+    height: 2px;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .student-bar::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--accent);
+    transition: left 0.4s ease;
+  }
+  .student-card:hover .student-bar::after { left: 0; }
+
+  /* ── GAME SECTION ── */
+  #game-section {
+    padding: 6rem 2.5rem;
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .game-container {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    align-items: start;
+  }
+  #game-canvas-wrap {
+    position: relative;
+    background: #050810;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  #gameCanvas {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/3;
+    image-rendering: pixelated;
+  }
+  .game-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .game-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.4rem;
+  }
+  .game-panel-title {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .score-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  #lives-display { font-size: 1.4rem; letter-spacing: 0.1em; }
+  .btn-game {
+    width: 100%;
+    padding: 0.9rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-game::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-101%);
+    transition: transform 0.25s ease;
+    z-index: 0;
+  }
+  .btn-game:hover::before { transform: translateX(0); }
+  .btn-game:hover { color: var(--black); }
+  .btn-game span { position: relative; z-index: 1; }
+  .highscore-list { list-style: none; }
+  .highscore-list li {
+    display: flex; justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .highscore-list li:first-child { color: var(--accent3); }
+  .game-instructions {
+    font-size: 0.65rem;
+    color: var(--muted);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+  }
+  .game-instructions kbd {
+    background: var(--border);
+    color: var(--white);
+    padding: 0.1rem 0.35rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+  }
+
+  /* ── COUNTDOWN ── */
+  #countdown-section {
+    padding: 6rem 2.5rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .countdown-grid {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cd-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 100px;
+  }
+  .cd-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--white);
+    line-height: 1;
+    text-shadow: var(--glow);
+    border: 1px solid var(--border);
+    background: var(--card);
+    padding: 0.5rem 1.2rem;
+    min-width: 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cd-num::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 3px;
+    background: var(--accent);
+  }
+  .cd-label { font-size: 0.6rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; }
+  .cd-separator {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--border);
+    line-height: 1;
+    padding-top: 0.5rem;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 2.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--deep);
+    position: relative;
+    z-index: 1;
+  }
+  .footer-left { font-size: 0.68rem; color: var(--muted); line-height: 1.8; }
+  .footer-left strong { color: var(--white); }
+  .footer-right {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+  .footer-right small {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: var(--card);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.8rem 1.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    z-index: 9000;
+    transform: translateY(150%);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow: var(--glow);
+  }
+  #toast.show { transform: translateY(0); }
+
+  /* ── PARTICLES ── */
+  .particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 500;
+    border-radius: 50%;
+    animation: particleFade 0.8s ease forwards;
+  }
+
+  /* ── MODAL ── */
+  #modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 8000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  #modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: var(--card);
+    border: 1px solid var(--accent);
+    padding: 3rem;
+    max-width: 480px;
+    width: 90%;
+    position: relative;
+    box-shadow: var(--glow);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  #modal-overlay.open .modal-box { transform: scale(1); }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none; color: var(--muted);
+    font-size: 1.2rem; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--accent2); }
+  .modal-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--accent);
+    line-height: 1;
+    opacity: 0.3;
+    position: absolute; top: 1rem; left: 1.5rem;
+  }
+  .modal-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    color: var(--white);
+  }
+  .modal-role {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .modal-skills {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .skill-tag {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.25rem 0.7rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .modal-quote {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+    font-style: italic;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; height: 60px; }
+    50% { opacity: 0.3; height: 30px; }
+  }
+  @keyframes glitch1 {
+    0%, 95%, 100% { transform: translate(0); opacity: 0; }
+    96% { transform: translate(-3px, 1px); opacity: 0.8; }
+    98% { transform: translate(3px, -1px); opacity: 0.8; }
+  }
+  @keyframes glitch2 {
+    0%, 94%, 100% { transform: translate(0); opacity: 0; }
+    95% { transform: translate(3px, 2px); opacity: 0.8; }
+    97% { transform: translate(-2px, -2px); opacity: 0.8; }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0; }
+  }
+  @keyframes particleFade {
+    0% { opacity: 1; transform: scale(1) translate(0,0); }
+    100% { opacity: 0; transform: scale(0) translate(var(--tx), var(--ty)); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,224,0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(0,255,224,0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+
+  /* Hide custom cursor on touch devices */
+  @media (hover: none) {
+    body { cursor: auto; }
+    #cursor, #cursor-ring { display: none; }
+  }
+
+  @media (max-width: 900px) {
+    .game-container { grid-template-columns: 1fr; }
+    .game-ui {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    #start-btn { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0.8rem 1.2rem; }
+    .nav-logo { font-size: 1.1rem; }
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.62rem; letter-spacing: 0.08em; }
+
+    #hero { padding: 5rem 1.2rem 2rem; }
+    .hero-badge { font-size: 0.58rem; letter-spacing: 0.18em; padding: 0.3rem 0.8rem; }
+    .hero-sub { font-size: 0.7rem; letter-spacing: 0.12em; }
+
+    #stats { gap: 1.5rem; padding: 1.5rem 1rem; }
+    .stat-num { font-size: 2.2rem; }
+    .stat-label { font-size: 0.55rem; }
+
+    #students { padding: 4rem 1rem; }
+    .students-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .student-card { padding: 1rem 1rem; }
+    .student-name { font-size: 0.82rem; }
+    .student-num { font-size: 1.8rem; }
+
+    #game-section { padding: 4rem 1rem; }
+    .game-ui { grid-template-columns: 1fr; }
+    #start-btn { grid-column: auto; }
+    #gameCanvas { width: 100%; height: auto; }
+
+    #countdown-section { padding: 4rem 1rem; }
+    .countdown-grid { gap: 0.8rem; }
+    .cd-num { font-size: 3rem; padding: 0.4rem 0.8rem; min-width: 80px; }
+    .cd-separator { font-size: 3rem; padding-top: 0.4rem; }
+    .cd-label { font-size: 0.55rem; }
+
+    .modal-box { padding: 2rem 1.5rem; }
+    .modal-name { font-size: 1.2rem; }
+
+    footer { flex-direction: column; padding: 2rem 1.2rem; text-align: center; }
+    .footer-right { text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .hero-title { font-size: clamp(3.5rem, 20vw, 6rem); }
+    .students-grid { grid-template-columns: 1fr; }
+    .countdown-grid { gap: 0.5rem; }
+    .cd-num { font-size: 2.4rem; min-width: 64px; padding: 0.35rem 0.6rem; }
+    .cd-separator { font-size: 2.4rem; }
+    .section-title { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+    .btn-game { font-size: 0.65rem; }
+  }
+
+  /* ── CODE RAIN EASTER EGG ── */
+  #code-rain {
+    position: fixed; inset: 0;
+    z-index: 850;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  #code-rain.active { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- BG Canvas -->
+<canvas id="bg-canvas"></canvas>
+<canvas id="code-rain"></canvas>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- Modal -->
+<div id="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-num" id="modal-num">01</div>
+    <div class="modal-name" id="modal-name">Nombre Apellido</div>
+    <div class="modal-role" id="modal-role">Técnico en Programación · 2da Promoción</div>
+    <div class="modal-skills" id="modal-skills"></div>
+    <div class="modal-quote" id="modal-quote"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">IPET 247 · 7mo I</div>
+  <ul class="nav-links">
+    <li><a href="#students">Promoción</a></li>
+    <li><a href="#game-section">Juego</a></li>
+    <li><a href="#countdown-section">Cuenta Regresiva</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">IPET N° 247 · Carlos Cassaffousth · Córdoba</div>
+  <h1 class="hero-title">
+    <span class="line1 glitch" data-text="7MO I">7MO I</span>
+    <span class="line2">PROMO 2026</span>
+  </h1>
+  <p class="hero-sub">
+    <span>25 Futuros</span> Técnicos en Programación · Última frontera
+  </p>
+  <div class="hero-count" id="hero-counter">// cargando alumnos...</div>
+  <div class="hero-scroll">
+    <span>Explorar</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div id="stats">
+  <div class="stat-item">
+    <div class="stat-num" data-target="25">00</div>
+    <div class="stat-label">Alumnos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="7">0</div>
+    <div class="stat-label">Años de carrera</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="2">0</div>
+    <div class="stat-label">Promoción</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="247">000</div>
+    <div class="stat-label">IPET N°</div>
+  </div>
+</div>
+
+<!-- STUDENTS -->
+<section id="students">
+  <div class="students-header reveal">
+    <div class="section-label">// alumnos</div>
+    <h2 class="section-title">La Promoción</h2>
+  </div>
+  <div class="students-grid" id="students-grid"></div>
+</section>
+
+<!-- GAME -->
+<section id="game-section">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="reveal">
+      <div class="section-label">// minijuego</div>
+      <h2 class="section-title">Bug Hunter</h2>
+      <p style="margin-top:0.8rem;font-size:0.75rem;color:var(--muted);max-width:500px;line-height:1.7;">
+        El clásico desafío de todo programador: eliminar bugs. Dispará a los errores antes de que lleguen abajo. ¡Cada bug es un NullPointerException!
+      </p>
+    </div>
+    <div class="game-container">
+      <div id="game-canvas-wrap">
+        <canvas id="gameCanvas" width="560" height="420"></canvas>
+      </div>
+      <div class="game-ui">
+        <div class="game-panel">
+          <div class="game-panel-title">// puntuación</div>
+          <div class="score-display" id="score-display">0000</div>
+          <div style="margin-top:0.5rem;font-size:0.6rem;color:var(--muted);letter-spacing:0.2em;">NIVEL <span id="level-display" style="color:var(--accent3)">01</span></div>
+          <div style="margin-top:0.8rem;font-size:0.65rem;color:var(--muted);">VIDAS</div>
+          <div id="lives-display">♥♥♥</div>
+        </div>
+        <div class="game-panel">
+          <div class="game-panel-title">// controles</div>
+          <div class="game-instructions">
+            <kbd>←</kbd> <kbd>→</kbd> Mover<br>
+            <kbd>Space</kbd> Disparar<br>
+            <kbd>P</kbd> Pausar<br><br>
+            En mobile: toca los botones de abajo del canvas.
+          </div>
+        </div>
+        <button class="btn-game" id="start-btn" onclick="startGame()">
+          <span>▶ Iniciar Juego</span>
+        </button>
+        <div class="game-panel">
+          <div class="game-panel-title">// top scores</div>
+          <ul class="highscore-list" id="highscore-list">
+            <li><span>---</span><span>0</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile controls -->
+    <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.2rem;">
+      <button class="btn-game" style="width:auto;padding:0.8rem 2rem;" id="btn-left" ontouchstart="keys.ArrowLeft=true" ontouchend="keys.ArrowLeft=false" onmousedown="keys.ArrowLeft=true" onmouseup="keys.ArrowLeft=false"><span>◀</span></button>
+      <button class="btn-game" style="width:auto;padding:0.8rem 2rem;" id="btn-fire" ontouchstart="fireBullet()" onmousedown="fireBullet()"><span>🔥 FIRE</span></button>
+      <button class="btn-game" style="width:auto;padding:0.8rem 2rem;" id="btn-right" ontouchstart="keys.ArrowRight=true" ontouchend="keys.ArrowRight=false" onmousedown="keys.ArrowRight=true" onmouseup="keys.ArrowRight=false"><span>▶</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown-section">
+  <div class="reveal">
+    <div class="section-label">// tiempo restante</div>
+    <h2 class="section-title">Cuenta Regresiva a la Colación</h2>
+    <p style="margin-top:0.8rem;font-size:0.75rem;color:var(--muted);">
       Tiempo restante hasta la colación de grados — 16 de diciembre de 2025
     </p>
   </div>
