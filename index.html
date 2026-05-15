@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>7mo I — IPET 247 | Técnicos en Programación · 2da Promoción</title>
+<title>7mo I — IPET 247 | Técnicos en Programación · Promo 2026</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23080a0f'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='36' fill='%2300ffe0'%3E%3C/%3E%3Cpolygon points='32,8 56,52 8,52' fill='none' stroke='%2300ffe0' stroke-width='3'/%3E%3Ccircle cx='32' cy='36' r='5' fill='%2300ffe0'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
@@ -642,11 +643,70 @@
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
+
+  /* Hide custom cursor on touch devices */
+  @media (hover: none) {
+    body { cursor: auto; }
+    #cursor, #cursor-ring { display: none; }
+  }
+
+  @media (max-width: 900px) {
     .game-container { grid-template-columns: 1fr; }
-    nav { padding: 1rem 1.2rem; }
-    .nav-links { gap: 1rem; }
-    #stats { gap: 2rem; }
+    .game-ui {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    #start-btn { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0.8rem 1.2rem; }
+    .nav-logo { font-size: 1.1rem; }
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.62rem; letter-spacing: 0.08em; }
+
+    #hero { padding: 5rem 1.2rem 2rem; }
+    .hero-badge { font-size: 0.58rem; letter-spacing: 0.18em; padding: 0.3rem 0.8rem; }
+    .hero-sub { font-size: 0.7rem; letter-spacing: 0.12em; }
+
+    #stats { gap: 1.5rem; padding: 1.5rem 1rem; }
+    .stat-num { font-size: 2.2rem; }
+    .stat-label { font-size: 0.55rem; }
+
+    #students { padding: 4rem 1rem; }
+    .students-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .student-card { padding: 1rem 1rem; }
+    .student-name { font-size: 0.82rem; }
+    .student-num { font-size: 1.8rem; }
+
+    #game-section { padding: 4rem 1rem; }
+    .game-ui { grid-template-columns: 1fr; }
+    #start-btn { grid-column: auto; }
+    #gameCanvas { width: 100%; height: auto; }
+
+    #countdown-section { padding: 4rem 1rem; }
+    .countdown-grid { gap: 0.8rem; }
+    .cd-num { font-size: 3rem; padding: 0.4rem 0.8rem; min-width: 80px; }
+    .cd-separator { font-size: 3rem; padding-top: 0.4rem; }
+    .cd-label { font-size: 0.55rem; }
+
+    .modal-box { padding: 2rem 1.5rem; }
+    .modal-name { font-size: 1.2rem; }
+
+    footer { flex-direction: column; padding: 2rem 1.2rem; text-align: center; }
+    .footer-right { text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .hero-title { font-size: clamp(3.5rem, 20vw, 6rem); }
+    .students-grid { grid-template-columns: 1fr; }
+    .countdown-grid { gap: 0.5rem; }
+    .cd-num { font-size: 2.4rem; min-width: 64px; padding: 0.35rem 0.6rem; }
+    .cd-separator { font-size: 2.4rem; }
+    .section-title { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+    .btn-game { font-size: 0.65rem; }
   }
 
   /* ── CODE RAIN EASTER EGG ── */
@@ -700,7 +760,7 @@
   <div class="hero-badge">IPET N° 247 · Carlos Cassaffousth · Córdoba</div>
   <h1 class="hero-title">
     <span class="line1 glitch" data-text="7MO I">7MO I</span>
-    <span class="line2">PROMO 2da</span>
+    <span class="line2">PROMO 2026</span>
   </h1>
   <p class="hero-sub">
     <span>25 Futuros</span> Técnicos en Programación · Última frontera
@@ -796,9 +856,9 @@
 <section id="countdown-section">
   <div class="reveal">
     <div class="section-label">// tiempo restante</div>
-    <h2 class="section-title">Cuenta Regresiva al Egreso</h2>
+    <h2 class="section-title">Cuenta Regresiva a la Colación</h2>
     <p style="margin-top:0.8rem;font-size:0.75rem;color:var(--muted);">
-      Tiempo estimado hasta fin del ciclo lectivo 2025
+      Tiempo restante hasta la colación de grados — 16 de diciembre de 2025
     </p>
   </div>
   <div class="countdown-grid">
@@ -823,7 +883,7 @@
     </div>
   </div>
   <div style="margin-top:3rem;font-size:0.65rem;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;">
-    Target: <span style="color:var(--accent)">10 Diciembre 2025 — Fin del ciclo lectivo</span>
+    Target: <span style="color:var(--accent)">16 Diciembre 2025 — Colación de Grados</span>
   </div>
   <button class="btn-game" style="width:auto;margin-top:2rem;padding:0.9rem 2.5rem;" onclick="triggerCodeRain()">
     <span>🎉 Celebrar — Activar Matrix Mode</span>
@@ -835,12 +895,12 @@
   <div class="footer-left">
     <strong>IPET N° 247 "Carlos Cassaffousth"</strong><br>
     Técnico en Programación — 7mo I<br>
-    Segunda Promoción · 2025<br>
+    Segunda Promoción · 2026<br>
     <span style="color:var(--accent);margin-top:0.3rem;display:block;">25 egresados que van a cambiar el código del mundo.</span>
   </div>
   <div class="footer-right">
     7MO I
-    <small>PROMO II · IPET 247</small>
+    <small>PROMO 2026 · IPET 247</small>
   </div>
 </footer>
 
@@ -1010,7 +1070,7 @@ function openModal(i) {
   const s = students[i];
   document.getElementById('modal-num').textContent = String(i+1).padStart(2,'0');
   document.getElementById('modal-name').textContent = s.name;
-  document.getElementById('modal-role').textContent = 'Técnico en Programación · 2da Promoción · IPET 247';
+  document.getElementById('modal-role').textContent = 'Técnico en Programación · Promo 2026 · IPET 247';
   const skillsEl = document.getElementById('modal-skills');
   skillsEl.innerHTML = s.skills.map(sk => `<span class="skill-tag">${sk}</span>`).join('');
   document.getElementById('modal-quote').textContent = `"${s.quote}"`;
@@ -1068,7 +1128,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
    COUNTDOWN
 ═══════════════════════════════════════════ */
 function updateCountdown() {
-  const target = new Date('2025-12-10T23:59:59');
+  const target = new Date('2025-12-16T20:00:00');
   const now = new Date();
   const diff = target - now;
   if (diff <= 0) {
