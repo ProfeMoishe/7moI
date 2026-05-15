@@ -642,6 +642,16 @@
     transform: translateY(0);
   }
 
+  /* ── GAME CANVAS COL ── */
+  .game-canvas-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mobile-controls {
+    display: none; /* oculto en desktop */
+  }
+
   /* ── RESPONSIVE ── */
 
   /* Hide custom cursor on touch devices */
@@ -684,6 +694,31 @@
     .game-ui { grid-template-columns: 1fr; }
     #start-btn { grid-column: auto; }
     #gameCanvas { width: 100%; height: auto; }
+
+    /* Botones mobile pegados al canvas */
+    .mobile-controls {
+      display: flex;
+      gap: 0;
+      width: 100%;
+    }
+    .btn-ctrl {
+      flex: 1;
+      padding: 1rem 0.5rem;
+      font-size: 1.1rem;
+      border-radius: 0;
+      border-top: none;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .btn-fire {
+      flex: 2;
+      background: rgba(255,75,110,0.12);
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+    .btn-fire::before { background: var(--accent2); }
+    .btn-fire:hover { color: var(--black); }
 
     #countdown-section { padding: 4rem 1rem; }
     .countdown-grid { gap: 0.8rem; }
@@ -812,9 +847,24 @@
       </p>
     </div>
     <div class="game-container">
-      <div id="game-canvas-wrap">
-        <canvas id="gameCanvas" width="560" height="420"></canvas>
+      <!-- Canvas + mobile controls pegados -->
+      <div class="game-canvas-col">
+        <div id="game-canvas-wrap">
+          <canvas id="gameCanvas" width="560" height="420"></canvas>
+        </div>
+        <!-- Mobile controls: siempre pegados al canvas -->
+        <div class="mobile-controls">
+          <button class="btn-game btn-ctrl" id="btn-left"
+            ontouchstart="keys.ArrowLeft=true" ontouchend="keys.ArrowLeft=false"
+            onmousedown="keys.ArrowLeft=true" onmouseup="keys.ArrowLeft=false"><span>◀</span></button>
+          <button class="btn-game btn-ctrl btn-fire" id="btn-fire"
+            ontouchstart="fireBullet()" onmousedown="fireBullet()"><span>🔥 FIRE</span></button>
+          <button class="btn-game btn-ctrl" id="btn-right"
+            ontouchstart="keys.ArrowRight=true" ontouchend="keys.ArrowRight=false"
+            onmousedown="keys.ArrowRight=true" onmouseup="keys.ArrowRight=false"><span>▶</span></button>
+        </div>
       </div>
+      <!-- Panel lateral -->
       <div class="game-ui">
         <div class="game-panel">
           <div class="game-panel-title">// puntuación</div>
@@ -828,8 +878,7 @@
           <div class="game-instructions">
             <kbd>←</kbd> <kbd>→</kbd> Mover<br>
             <kbd>Space</kbd> Disparar<br>
-            <kbd>P</kbd> Pausar<br><br>
-            En mobile: toca los botones de abajo del canvas.
+            <kbd>P</kbd> Pausar
           </div>
         </div>
         <button class="btn-game" id="start-btn" onclick="startGame()">
@@ -842,12 +891,6 @@
           </ul>
         </div>
       </div>
-    </div>
-    <!-- Mobile controls -->
-    <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.2rem;">
-      <button class="btn-game" style="width:auto;padding:0.8rem 2rem;" id="btn-left" ontouchstart="keys.ArrowLeft=true" ontouchend="keys.ArrowLeft=false" onmousedown="keys.ArrowLeft=true" onmouseup="keys.ArrowLeft=false"><span>◀</span></button>
-      <button class="btn-game" style="width:auto;padding:0.8rem 2rem;" id="btn-fire" ontouchstart="fireBullet()" onmousedown="fireBullet()"><span>🔥 FIRE</span></button>
-      <button class="btn-game" style="width:auto;padding:0.8rem 2rem;" id="btn-right" ontouchstart="keys.ArrowRight=true" ontouchend="keys.ArrowRight=false" onmousedown="keys.ArrowRight=true" onmouseup="keys.ArrowRight=false"><span>▶</span></button>
     </div>
   </div>
 </section>
