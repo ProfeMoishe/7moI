@@ -1203,7 +1203,12 @@ let rainActive = false, rainInterval;
 function triggerCodeRain() {
   rainCanvas.classList.toggle('active');
   rainActive = !rainActive;
+  
   if (rainActive) {
+    // 🎵 Reproducir sonido Matrix
+    matrixSound.currentTime = 0;
+    matrixSound.play().catch(() => {});
+    
     rainCanvas.width = window.innerWidth;
     rainCanvas.height = window.innerHeight;
     const cols = Math.floor(rainCanvas.width / 16);
@@ -1221,6 +1226,10 @@ function triggerCodeRain() {
     }, 40);
     showToast('🎉 ¡Matrix Mode ON! Hacé click de nuevo para salir.');
   } else {
+    // Detener sonido Matrix
+    matrixSound.pause();
+    matrixSound.currentTime = 0;
+    
     clearInterval(rainInterval);
     rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
     showToast('Matrix Mode OFF');
@@ -1557,6 +1566,44 @@ initGame();
 requestAnimationFrame(gameLoop);
 
 /* ═══════════════════════════════════════════
+   MÚSICA DE FONDO
+═══════════════════════════════════════════ */
+const bgMusic = document.getElementById('bg-music');
+const matrixSound = document.getElementById('matrix-sound');
+const musicToggle = document.getElementById('music-toggle');
+let musicPlaying = false;
+
+// Configurar volumen bajo para no molestar
+bgMusic.volume = 0.15;
+matrixSound.volume = 0.3;
+
+musicToggle.addEventListener('click', () => {
+  if (musicPlaying) {
+    bgMusic.pause();
+    musicToggle.textContent = '🔇';
+    musicToggle.style.color = 'var(--muted)';
+    musicToggle.style.borderColor = 'var(--muted)';
+  } else {
+    bgMusic.play().catch(() => {
+      showToast('🎵 Click para activar música');
+    });
+    musicToggle.textContent = '🔊';
+    musicToggle.style.color = 'var(--accent)';
+    musicToggle.style.borderColor = 'var(--accent)';
+  }
+  musicPlaying = !musicPlaying;
+});
+
+// Iniciar música con el primer click en cualquier parte (política de autoplay)
+document.addEventListener('click', () => {
+  if (!musicPlaying) {
+    bgMusic.play().catch(() => {});
+    musicPlaying = true;
+    musicToggle.textContent = '🔊';
+  }
+}, { once: true });
+
+/* ═══════════════════════════════════════════
    KONAMI CODE EASTER EGG
 ═══════════════════════════════════════════ */
 const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
@@ -1573,21 +1620,53 @@ document.addEventListener('keydown', e => {
   } else { konamiIdx = 0; }
 });
 
-/* Small hover sound effect via AudioContext */
+/* Sonido hover mejorado para tarjetas */
 document.querySelectorAll('.student-card').forEach(card => {
   card.addEventListener('mouseenter', () => {
     try {
       const ac = new (window.AudioContext || window.webkitAudioContext)();
-      const o = ac.createOscillator(); const g = ac.createGain();
-      o.connect(g); g.connect(ac.destination);
-      o.frequency.value = 440 + Math.random() * 220;
-      o.type = 'sine';
-      g.gain.setValueAtTime(0.05, ac.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.1);
-      o.start(); o.stop(ac.currentTime + 0.1);
+      const o = ac.createOscillator();
+      const g = ac.createGain();
+      
+      // Efecto de "blip" tecnológico
+      o.type = 'square';
+      o.frequency.setValueAtTime(880, ac.currentTime);
+      o.frequency.exponentialRampToValueAtTime(440, ac.currentTime + 0.08);
+      
+      g.gain.setValueAtTime(0.03, ac.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.15);
+      
+      o.connect(g);
+      g.connect(ac.destination);
+      o.start();
+      o.stop(ac.currentTime + 0.15);
     } catch(e) {}
   });
 });
 </script>
+  <!-- Audio elements (ocultos) -->
+<audio id="bg-music" loop preload="auto">
+  <source src="https://cdn.pixabay.com/audio/2022/10/14/audio_9939f6c5d8.mp3" type="audio/mpeg">
+</audio>
+<audio id="matrix-sound" preload="auto">
+  <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_d0c6ff1ec5.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Botón de música (esquina inferior izquierda) -->
+<button id="music-toggle" style="
+  position: fixed; bottom: 20px; left: 20px;
+  z-index: 9999;
+  background: var(--card);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  width: 48px; height: 48px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 2px;
+  transition: all 0.3s;
+" title="Activar/Desactivar música">
+  🔊
+</button>
 </body>
 </html>
